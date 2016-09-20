@@ -7,16 +7,40 @@
 #donut {
   width: 29rem;
   height: 29rem;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20%;
+  float: none !important; 
 }
 
 path.color0 {
-  fill: #1072b8;
+  fill: #528FCC;
 }
 
 path.color1 {
-  fill: #35526b;
+  fill: #F0FAFA; 
 }
+
+text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 16rem;
+  fill: #528FCC;
+}
+
+/*  bar */
+
+.bullet { font: 10px sans-serif; }
+.bullet .marker { stroke: #000; stroke-width: 2px; }
+.bullet .tick line { stroke: #666; stroke-width: .5px; }
+.bullet .range.s0 { fill: red; }
+.bullet .range.s1 { fill: yellow; }
+.bullet .range.s2 { fill: orange; }
+.bullet .measure.s0 { fill: blue; }
+.bullet .measure.s1 { fill: green; }
+.bullet .title { font-size: 14px; font-weight: bold; }
+.bullet .subtitle { font-size: 14px; fill: #999; }
 
 /*  CSS */
 
@@ -109,7 +133,7 @@ h1,
 .h1,
 h2,
 .h2 {
-	font-size: 44px;
+	font-size: 30px;
 	font-size: 2rem;
 	letter-spacing: 0;
 	line-height: 1;
