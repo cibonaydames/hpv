@@ -90,10 +90,14 @@
             .width(width)
             .height(height);
         
+        var vacstatus = "unvaccinated";
         
-        d3.csv("data/hpv-data.csv", function(error, data) {
+        
+        d3.csv("data/hpv-data2.csv", function(error, data) {
           if (error) {
 					console.log(error);}
+            
+            console.log(data);
 
           var svg = d3.select("#bulletline").selectAll("svg")
               .data(data)
@@ -122,13 +126,39 @@
           });
         });
 
-        function unvaccinated(d) {
+        
+        function updatechart(d) {
+            if (vacstatus) {
+              ("unvaccinated");// set as unvaccinated    
+            }
+                
+        };
+        
+        d3.select("#zero")
+            .on("change", function() {
+            // match based on global variable. if vaccinated get this variable if not get another variable
+        });
+        
+         d3.select("#one")
+            .on("change", function() {
+ 
+        });
+        
+        d3.select("#two")
+            .on("change", function() {
+ 
+        });
+        
+        d3.select("#three_five")
+            .on("change", function() {
+ 
+        });
 
-        }
+        d3.select("#six_plus")
+            .on("change", function() {
+ 
+        });
 
-        function vaccinated(d) {
-          };
-        }
 
     </script>
 
