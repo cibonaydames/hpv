@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="no-js is-ie"><![endif]-->
+<!--[if gt IE 8]><!--><html class=no-js><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+	<title>HPV</title>
+	<link rel=stylesheet href="css/main.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+	
+	<link rel=stylesheet href="css/ie.css">
+	
+    <script src="js/vendor/modernizr.js"></script>
+		<script src="js/vendor/respond.min.js"></script>
+
+</head>
+
+<body>
+	<div class="level level-hero hero-home has-hint">
+		
+
+<!--		<div class="hero-overlay visible-lg"></div>-->
+
+		<div class="container full-height">
+			<div class=v-align-parent>
+				<div class=v-center>
+					<div class="row">
+						<div class="col-md-2">
+						<br>
+                         <br>	
+                         <span style="font-family: Lato, sans-serif">
+                             <h1 class="mb-10 heading">IS HPV <span>WORTH <span>THE RISK?</span></h1>
+                              <span>
+                           <br>
+                            <div class="subheading mb-20"><B>27%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.    
+                            </div>
+						</div>
+						<div class="col-md-10">
+						    <div class="btn-group" data-toggle="buttons-radio">
+                                <button type="button" id="zero" class="btn active switch">0 Partners</button>
+                                <button type="button" id="one" class="btn switch">1 Partner</button>
+                                <button type="button" id="two" class="btn switch">2 Partners</button>
+                                <button type="button" id="three_five" class="btn switch">3-5 Partners</button>
+                                <button type="button" id="six_plus" class="btn switch">6+ Partners</button>
+                            </div>
+                            <br><br>
+							<div id="bulletline"></div>
+							<br>
+							<div class="btn-group" data-toggle="buttons-radio">
+                                <button type="button" id="unvaccinated" class="btn active switch">Unvaccinated</button>
+                                <button type="button" id="vaccinated" class="btn switch">Vaccinated</button>
+                            </div>
+                              </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/dropdown.js"></script>
+	<script src="js/modal.js"></script>
+	<script src="js/main.js"></script>
+	<!-- //-end- concat_js -->
+	
+	<!-- D3 SCRIPTS -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="js/bullet.js"></script>
+
+
+	<script>
+
+         var margin = {top: 5, right: 40, bottom: 20, left: 120},
+            width = 960 - margin.left - margin.right,
+            height = 50 - margin.top - margin.bottom;
+        var chart = d3.bullet()
+            .width(width)
+            .height(height);
+        d3.json("js/bullets.json", function(error, data) {
+          if (error) throw error;
+          var svg = d3.select("#bulletline").selectAll("svg")
+              .data(data)
+            .enter().append("svg")
+              .attr("class", "bullet")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+              .call(chart);
+          var title = svg.append("g")
+              .style("text-anchor", "end")
+              .attr("transform", "translate(-6," + height / 2 + ")");
+          title.append("text")
+              .attr("class", "title")
+              .text(function(d) { return d.title; });
+          title.append("text")
+              .attr("class", "subtitle")
+              .attr("dy", "1em")
+              .text(function(d) { return d.subtitle; });
+          d3.selectAll("button").on("click", function() {
+            svg.datum(randomize).call(chart.duration(1000)); // TODO automatic transition
+          });
+        });
+        function randomize(d) {
+          if (!d.randomizer) d.randomizer = randomizer(d);
+          d.ranges = d.ranges.map(d.randomizer);
+          d.markers = d.markers.map(d.randomizer);
+         /* d.measures = d.measures.map(d.randomizer);*/
+          return d;
+        }
+        function randomizer(d) {
+          var k = d3.max(d.ranges) * .2;
+          return function(d) {
+            return Math.max(0, d + k * (Math.random() - .5));
+          };
+        }
+
+
+
+    </script>
+
+</body>
+</html>

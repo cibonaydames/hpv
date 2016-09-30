@@ -14,8 +14,7 @@
 	
 	<link rel=stylesheet href="css/ie.css">
 	
-		<script src="js/vendor/modernizr.js"></script>
-
+    <script src="js/vendor/modernizr.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
 
 </head>
@@ -42,14 +41,14 @@
 						</div>
 						<div class="col-md-10">
 						    <div class="btn-group" data-toggle="buttons-radio">
-                                <button type="button" id="zero" class="btn active switch">0 Partners</button>
+                                <button type="button" id="zero" class="btn active switch" value="Update" onclick="updateData()">0 Partners</button>
                                 <button type="button" id="one" class="btn switch">1 Partner</button>
                                 <button type="button" id="two" class="btn switch">2 Partners</button>
                                 <button type="button" id="three_five" class="btn switch">3-5 Partners</button>
                                 <button type="button" id="six_plus" class="btn switch">6+ Partners</button>
                             </div>
                             <br><br>
-							<div id="bulletline"></div>
+							<div id="hpvchart">  </div>
 							<br>
 							<div class="btn-group" data-toggle="buttons-radio">
                                 <button type="button" id="unvaccinated" class="btn active switch">Unvaccinated</button>
@@ -78,55 +77,140 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="js/bullet.js"></script>
+    <script src="js/hpv.js"></script>
 
 
 	<script>
+        // Size of SVG container
+            var fullwidth = 850;
+			var	fullheight = 360;
+        
+        // Margins around the graph
+            var margin = {top: 5, right: 40, bottom: 20, left: 120};
+            
+            var width = 960 - margin.left - margin.right;
+            var height = 50 - margin.top - margin.bottom;
+        
+            var widthScale = d3.scale.linear()
+				.range([0, width]);
+        
+        // Space out the bars between the top margin and chart height (bottom)
+			var heightScale = d3.scale.ordinal()
+				.rangeRoundBands([ 0, height], 0.2);         
+        
+            var svg = d3.select("body")
+/*            var vis = d3.select("hpvchart").append("svg");
+            var svg = vis*/
+				.append("svg")
+				//.attr("width", fullwidth)
+                .attr("width", width + margin.left + margin.right)
+				//.attr("height", fullheight)
+                .attr("height", height + margin.top + margin.bottom)
+				.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+        
+        d3.csv("data/hpv-data.csv", function(error, data) {
 
-         var margin = {top: 5, right: 40, bottom: 20, left: 120},
-            width = 960 - margin.left - margin.right,
-            height = 50 - margin.top - margin.bottom;
-        var chart = d3.bullet()
-            .width(width)
-            .height(height);
-        d3.json("js/bullets.json", function(error, data) {
-          if (error) throw error;
-          var svg = d3.select("#bulletline").selectAll("svg")
-              .data(data)
-            .enter().append("svg")
-              .attr("class", "bullet")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-              .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-              .call(chart);
-          var title = svg.append("g")
-              .style("text-anchor", "end")
-              .attr("transform", "translate(-6," + height / 2 + ")");
-          title.append("text")
-              .attr("class", "title")
-              .text(function(d) { return d.title; });
-          title.append("text")
-              .attr("class", "subtitle")
-              .attr("dy", "1em")
-              .text(function(d) { return d.subtitle; });
-          d3.selectAll("button").on("click", function() {
-            svg.datum(randomize).call(chart.duration(1000)); // TODO automatic transition
-          });
+				if (error) {
+					console.log("error reading file");
+				}
+
+				data.sort(function(a, b) {
+					return d3.descending(+a.status, +b.status);
+				});
+
+				// in this case, i know it's out of 100 because it's percents.
+				// you should calculate using d3.max for your data!
+				/*widthScale.domain([0, 100]);*/
+				widthScale.domain([ 0, d3.max(data, function(d) {
+					return +d.average;
+				}) ]);
+
+				// js map: will make a new array out of all the d.name fields:
+
+				heightScale.domain(data.map(function(d) { return d.status; } ));
+
+            var rects = svg.selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect");
+            
+                rects
+					.attr("x", 0)
+					.attr("y", function(d) {
+						return heightScale(d.status); // because we mapped to the names!
+					})
+					.attr("width", function(d) {
+						return widthScale(d.average);
+					})
+					.attr("height", heightScale.rangeBand()) // the height is a rangeband!
+					.style("fill", function(d){
+						if (d.status === "Average") {
+							return "#dab855"; // special case file, could have been done by a class.
+						}
+					})
+					.append("title")
+					.text(function(d) {
+						return " People who are " + d.status + " have " + d.average  + " chance of contracting HPV. ";
+					});
+                      
+                    svg.selectAll("text")
+                   .attr("class", "label")
+				    .data(data)
+			      	.enter()
+			      	.append("text")
+				    .text(function(d){
+					 	return d.status;
+					 })          // define text string to show.
+                     .attr("x", function(d) {
+						return widthScale(d.average)+15;
+					})
+                     .attr("y", function(d) {
+						return heightScale(d.status)+25; // because we mapped to the names!
+					})
+                     .attr("font-size","12px")
+            
         });
-        function randomize(d) {
-          if (!d.randomizer) d.randomizer = randomizer(d);
-          d.ranges = d.ranges.map(d.randomizer);
-          d.markers = d.markers.map(d.randomizer);
-         /* d.measures = d.measures.map(d.randomizer);*/
-          return d;
-        }
-        function randomizer(d) {
-          var k = d3.max(d.ranges) * .2;
-          return function(d) {
-            return Math.max(0, d + k * (Math.random() - .5));
-          };
-        }
+        
+        // ** Update data section (Called from the onclick)
+        function updateData() {
 
+            // Get the data again
+             d3.csv("data/hpv-data.csv", function(error, data) {
+
+				if (error) {
+					console.log("error reading file");
+				}
+
+				data.sort(function(a, b) {
+					return d3.descending(+a.zero, +b.zero);
+				});
+
+                // Scale the range of the data again 
+                widthScale.domain([ 0, d3.max(data, function(d) {
+					return +d.zero;
+				}) ]);
+
+				heightScale.domain(data.map(function(d) { 
+                    return d.status; } ));
+                
+            // Select the section we want to apply our changes to
+            var rects = svg.selectAll("rect").transition();
+
+            // Make the changes
+              /*  svg.select(".line")   // change the line
+                    .duration(750)
+                    .attr("d", valueline(data));
+                svg.select(".x.axis") // change the x axis
+                    .duration(750)
+                    .call(xAxis);
+                svg.select(".y.axis") // change the y axis
+                    .duration(750)
+                    .call(yAxis);
+*/
+            });
+}
 
 
     </script>
