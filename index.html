@@ -98,9 +98,7 @@
 			var heightScale = d3.scale.ordinal()
 				.rangeRoundBands([ 0, height], 0.2);         
         
-            var svg = d3.select("body")
-/*            var vis = d3.select("hpvchart").append("svg");
-            var svg = vis*/
+            var svg = d3.select("#hpvchart")
 				.append("svg")
 				//.attr("width", fullwidth)
                 .attr("width", width + margin.left + margin.right)
