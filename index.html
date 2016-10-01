@@ -152,7 +152,12 @@
 					.text(function(d) {
 						return " People who are " + d.status + " have " + d.average  + " chance of contracting HPV. ";
 					});
-                      
+                     
+/*                   var imgs = svg.selectAll("image")
+                        .imgs.enter()
+                        .append("svg:image")
+                        .attr("xlink:href", "../img/silueta-selected.svg");*/
+            
                     svg.selectAll("text")
                    .attr("class", "label")
 				    .data(data)
@@ -168,6 +173,8 @@
 						return heightScale(d.status)+25; // because we mapped to the names!
 					})
                      .attr("font-size","12px")
+                    .append("svg:image")
+                        .attr("xlink:href", "../img/silueta-selected.svg")
             
         });
         
