@@ -13,13 +13,12 @@
 
 			body {
 				background-color: #d4e894;
-				margin: 20px;
 				font-family: sans-serif;
 			}
 
 			svg {
 				background-color: white;
-				margin: 10px;
+				margin: 100;
 			}
 
 			rect {
@@ -115,8 +114,7 @@ input,
 select,
 button {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 22px;
-	font-size: 1rem;
+	font-size: 16px;
 	line-height: 1.36;
 	color: #86888b;
 	letter-spacing: -0.035em;
