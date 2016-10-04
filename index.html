@@ -35,9 +35,11 @@
                          <span style="font-family: Lato, sans-serif">
                              <h1 class="mb-10 heading">IS HPV <span>WORTH <span>THE RISK?</span></h1>
                               <span>
-                           <br>
-                            <div class="subheading mb-20"><B>27%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.<br><br>
-                            Getting vaccinated greatly reduces your risk.   
+                           <br><br>
+                            <div class="subheading mb-20"><B>26.8%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.<br><br>
+                            Let's see how being vaccinated lowers<br>
+                            our risk despite the number of <br>
+                            sexual partnerts we have.  
                             </div>
 						</div>
 						<div class="col-md-7">
@@ -85,14 +87,14 @@
 
 	<script>
         // Size of SVG container
-            var fullwidth = 600;
-			var	fullheight = 400;
+            var fullwidth = 620;
+			var	fullheight = 610;
         
         // Margins around the graph
-            var margin = {top: 50, right: 40, bottom: 50, left: 20};
+            var margin = {top: 65, right: 90, bottom: 50, left: 60};
             
             var width = fullwidth - margin.left - margin.right;
-            var height = 150 - margin.top - margin.bottom;
+            var height = 275 - margin.top - margin.bottom;
         
             var widthScale = d3.scale.linear()
 				.range([0, width]);
@@ -103,7 +105,9 @@
         
             var xAxis = d3.svg.axis()
 							.scale(widthScale)
-							.orient("bottom");
+							.orient("bottom")
+                            .innerTickSize([2])
+                            .outerTickSize([4]);
             
             var yAxis = d3.svg.axis()
 							.scale(heightScale)
@@ -112,9 +116,7 @@
         
             var svg = d3.select("#hpvchart")
 				.append("svg")
-				//.attr("width", fullwidth)
                 .attr("width", width + margin.left + margin.right)
-				//.attr("height", fullheight)
                 .attr("height", height + margin.top + margin.bottom)
 				.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -131,9 +133,8 @@
 				data.sort(function(a, b) {
 					return d3.descending(+a.status, +b.status);
 				});
-
-				// in this case, i know it's out of 100 because it's percents.
-				// you should calculate using d3.max for your data!
+            
+				// you should calculate using d3.max for your data
 				widthScale.domain([ 0, d3.max(data, function(d) {
 					return +d.six_plus;
 				}) ]);
@@ -169,24 +170,26 @@
 			      	.enter()
 			      	.append("text")
 				    .text(function(d){
-                        return  +d.average;
+                        return  +d.average + " %";
 					 })         
                      .attr("x", function(d) {
 						return widthScale(+d.average)+5;
 					})
-                     .attr('y', '6')
-                     .attr("font-size","12px")
-        
+                     .attr('y', '-45')
+                     .attr("fill","#5582b0")
+                     .attr("font-size","24")
+                     .attr("font-weight","700")
             
                     // Style the axis
             svg.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis)
-                    
-            svg.append("g")
+                .attr("fill","#808285");
+              
+           /* svg.append("g")
                 .attr("class", "y axis")
-                .call(yAxis);
+                .call(yAxis);*/
             
             // Label below x axis
 				svg.append("text")
@@ -195,27 +198,26 @@
         				height + ")")
         			.style("text-anchor", "middle")
         			.attr("dy", "45")
-        			.text("Title Here");
+        			.text("Risk of Contracting HPV")
+                    .attr("fill","#5582b0")
+                    .attr("font-weight","600");
  
             svg.selectAll("image")
-                   //.attr("class", "label")
-                   /*.attr("transform", "translate(" + width + " ," +
-        				height + ")")*/
                     .data(([data[0]])  )  
                     .enter()
                     .append("svg:image")
                     .attr("x", function(d) {
-						return widthScale(+d.average)+5;
+						return widthScale(+d.average)-45;
 					})
-                    .attr('y', '4')
-                    .attr("height", 50)
-                    .attr("width", 50)
+                    .attr('y', '-40')
+                    .attr("height", 200)
+                    .attr("width", 115)
                         .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-selected.svg");
-            
-            d3.selectAll("button")
+           
+           /*  d3.selectAll("button")
                     .on("click",function(){
                         console.log(this.id);
-                    });
+                    });*/
             
             d3.selectAll("button").on("click",function(){
 	               if(this.id == "unvaccinated")
@@ -228,6 +230,9 @@
 	                   }
            rects
 	               .data(data)
+                   .transition() 
+                   .duration(500)
+                   .ease("linear")
 	               .attr("width", function(d) {
 			         return widthScale(data[status][numOfPartner]); 
            });
@@ -235,53 +240,30 @@
                
                svg.selectAll("text")
                .data([data[0]])
+               .transition() 
+                   .duration(500)
+                   .ease("linear")
 	               .attr("x", function(d) {
 			         return widthScale(data[status][numOfPartner])})
                      .text(function(d){
-                       return data[status][numOfPartner]
+                       return data[status][numOfPartner] + " %"
 					 }); 
                 
-        
+    
                    
             svg.selectAll("image")
                     .data(data)
+                    .transition() 
+                   .duration(500)
+                   .ease("linear")
 	               .attr("x", function(d) {
 			    //get correct number     
-                return widthScale(data[status][numOfPartner]);  });
-
-                   
-            /*svg.selectAll("image")
-                   //.attr("class", "label")
-                   /*.attr("transform", "translate(" + width + " ," +
-        				height + ")")*/
-                    //.data(data)
-	              // .attr("width", function(d) {
-			      //   return widthScale(data[status][numOfPartner]);*/
-             
-              /* svg.selectAll("text")
-                   .attr("class", "label")
-				    .data(data)
-			      	.enter()
-			      	.append("text")
-				    .text(function(d){
-					 	//return d.status;
-                        return  +d.average ;
-					 })          // define text string to show.
-                     .attr("x", function(d) {
-						return widthScale(+d.average)+5;
-					})
-                     .attr('y', '4') // because we mapped to the names!
-                     .attr("font-size","12px")       */
-            
+                return widthScale(data[status][numOfPartner])-45;  });
 		         
 	       });
 
            });  
-       
-            
-
-       
-        
+         
 
     </script>
 
