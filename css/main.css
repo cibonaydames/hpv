@@ -5,50 +5,49 @@
 
 /* D3 CSS */
 
-.xlabel, .ylabel {
-				font-family: sans-serif;
-				font-size: 16px;
-				color: gray;
-			}
+text.xlabel, text.ylabel {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: gray;
+}
+label {
+    font-size: 16px;
+}
 
-			body {
-				background-color: #d4e894;
-				font-family: sans-serif;
-			}
 
-			svg {
-				background-color: white;
-				margin: 100;
-			}
+body {
+    background-color: #d4e894;
+    font-family: sans-serif;
+}
 
-			rect {
-				fill: #bada55;
-			}
+svg {
+    background-color: white;
+    margin: 100;
+}
 
-			rect:hover {
-				fill: #55bada;
-			}
+rect {
+    fill: #fff;
+}
 
-			.axis path,
-			.axis line {
-				fill: none;
-				stroke: black;
-				shape-rendering: crispEdges;
-			}
 
-			.axis text {
-				font-family: sans-serif;
-				font-size: 12px;
-                color: black;
-			}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #5582b0;
+}
 
 
 text {
   font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
+  
   line-height: 16rem;
-  fill: #528FCC;
 }
 
 /*  CSS */
@@ -103,7 +102,7 @@ button {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	line-height: 1.36;
-	color: #86888b;
+	color: #ffffff;
 	letter-spacing: -0.035em;
 }
 
@@ -533,17 +532,14 @@ input.text:focus {
 	line-height: 1;
 	font-size: 16px;
     text-align: center;
-	background: #2a2a2a;
+	background: #c1ccd1;
 	cursor: pointer;
 	padding: 15px 10px;
 	position: relative;
 	z-index: 2;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);   
+	-webkit-tap-highlight-color: rgba(0,0,0,0.1);   
 }
 
-.btn:focus {
-background: red;
-}
 
 /* padding before icon */
 .btn-prepend,
@@ -865,10 +861,10 @@ background: red;
 
 .level-hero {
 	background-position: 50% 50%;
-	background-color: #5c6164;
+	background-color: 8a8c8e;
 	background-repeat: no-repeat;
 	background-size: cover;
-	color: #fff;
+	color: #8a8c8e;
 	height: 100%;
 	padding: 0;
 	border: 0;
@@ -958,11 +954,11 @@ background: red;
 /* home hero specific pages */
 
 .hero-home {
-	background-image: url("bg.png");
+	background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
     background-position: left bottom; /*Positioning*/
     background-repeat: no-repeat;
-	background-color: #523129;
-	min-height: 400px;
+	background-color: #ffffff;
+    background-size: 300px 300px;
 }
 
 .hero-home h1 {
@@ -978,8 +974,8 @@ background: red;
 
 @media ( min-width: 1200px ) {
 	.hero-home {
-		background-color: #5c6164;
-		background-image: url("../img/frame-1.jpg");
+		background-color: #ffffff;
+		background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
 	}
 
 }
@@ -1030,8 +1026,7 @@ background: red;
 .iphone-mobile {
 	height: 200px; 
 	width: 100%;
-	background: url("../img/v2/iphone6.min.png") 6% 0 no-repeat;
-	background-size: auto 100%; 
+	background: url("https://cibonaydames.github.io/hpv/img/bg3.png") no-repeat;
 }
 
 @media ( min-width: 768px ) {
@@ -1048,15 +1043,6 @@ background: red;
 		padding: 0;
 	}
 
-	.level-img-right > .container {
-		position: relative;
-		margin-top: 2.727rem;
-		padding: 40px 15px 220px;
-		padding: 1.818rem 15px 10rem;
-		background: transparent url("../img/v2/iphone-bg-sm.min.png") 100% 100% no-repeat;
-		background-size: auto 90%;
-		
-	}
 }
 
 .level-img-right {
@@ -1083,7 +1069,7 @@ background: red;
 }
 
 .level-hero .heading {
-	color: #fff;
+	color: #8a8c8e;
 }
 
 .v-align-parent {
