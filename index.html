@@ -29,17 +29,22 @@
 			<div class=v-align-parent>
 				<div class=v-center>
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-md-4">
 						<br>
                          <br>	
                          <span style="font-family: Lato, sans-serif">
                              <h1 class="mb-10 heading">IS HPV <span>WORTH <span>THE RISK?</span></h1>
                               <span>
                            <br>
-                            <div class="subheading mb-20"><B>27%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.    
+                            <div class="subheading mb-20"><B>27%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.<br><br>
+                            Getting vaccinated can greatly reduce your risk.   
                             </div>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-8">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
 						    <div class="btn-group" data-toggle="buttons-radio">
                                 <button type="button" id="zero" class="btn active switch" >0 Partners</button>
                                 <button type="button" id="one" class="btn switch">1 Partner</button>
@@ -76,8 +81,6 @@
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-<!--    <script src="js/bullet.js"></script>
-    <script src="js/hpv.js"></script>-->
 
 
 	<script>
@@ -86,7 +89,7 @@
 			var	fullheight = 360;
         
         // Margins around the graph
-            var margin = {top: 5, right: 20, bottom: 50, left: 20};
+            var margin = {top: 5, right: 40, bottom: 50, left: 20};
             
             var width = fullwidth - margin.left - margin.right;
             var height = 80 - margin.top - margin.bottom;
@@ -119,12 +122,6 @@
             var numOfPartner = 'zero';
             var status = 0;
         
-           /* var textlabels = d3.svg.selectAll("text.label") 
-                .data(data) 
-                .enter() 
-                .append("text") 
-                .attr("class", "label");*/
-        
         d3.csv("data/hpv-data.csv", function(error, data) {
 
 				if (error) {
@@ -143,10 +140,10 @@
 
 				// js map: will make a new array out of all the d.name fields:
 
-				heightScale.domain(data.map(function(d) { return d.average; } ).slice(1));
+				heightScale.domain(data.map(function(d) { return +d.average; } ).slice(1));
             
             var rects = svg.selectAll("rect")
-                    .data(data)
+                    .data([data[0]])
                     .enter()
                     .append("rect");
             
@@ -160,10 +157,12 @@
 					})
 					.attr("height", heightScale.rangeBand()) // the height is a rangeband!
 					.style("fill", function(d){
-						if (+d.status === "Average") {
+						if (+d.status === "vaccinated") {
 							return "#dab855"; // special case file, could have been done by a class.
 						}
 					})
+                
+
 					/*.append("text")
 					.text(function(d) {
 						return " People who are " + d.status + " have " + d.average  + " chance of contracting HPV. ";
@@ -178,19 +177,18 @@
             
                 svg.selectAll("text")
                    .attr("class", "label")
-				    .data(data)
+				    .data([data[0]])
 			      	.enter()
 			      	.append("text")
 				    .text(function(d){
-					 	//return d.status;
                         return  +d.average;
-					 })          // define text string to show.
+					 })         
                      .attr("x", function(d) {
 						return widthScale(+d.average)+5;
 					})
-                     .attr('y', '4') // because we mapped to the names!
+                     .attr('y', '6')
                      .attr("font-size","12px")
-                    // add svg image
+        
             
                     // Style the axis
             svg.append("g")
@@ -215,7 +213,7 @@
                    //.attr("class", "label")
                    /*.attr("transform", "translate(" + width + " ," +
         				height + ")")*/
-                    .data(data)    
+                    .data(([data[0]])  )  
                     .enter()
                     .append("svg:image")
                     .attr("x", function(d) {
@@ -245,15 +243,17 @@
 	               .attr("width", function(d) {
 			         return widthScale(data[status][numOfPartner]); 
            });
+                
                
                svg.selectAll("text")
                .data(data)
 	               .attr("x", function(d) {
 			         return widthScale(data[status][numOfPartner])})
                      .text(function(d){
-					 	//return d.status;
-                       return widthScale(data[status][numOfPartner])
+                       return data[status][numOfPartner]
 					 }); 
+                
+        
                    
             svg.selectAll("image")
                     .data(data)
