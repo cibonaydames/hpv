@@ -29,7 +29,7 @@
 			<div class=v-align-parent>
 				<div class=v-center>
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-5">
 						<br>
                          <br>	
                          <span style="font-family: Lato, sans-serif">
@@ -37,16 +37,16 @@
                               <span>
                            <br>
                             <div class="subheading mb-20"><B>27%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.<br><br>
-                            Getting vaccinated can greatly reduce your risk.   
+                            Getting vaccinated greatly reduces your risk.   
                             </div>
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-7">
                         <br>
                         <br>
                         <br>
                         <br>
 						    <div class="btn-group" data-toggle="buttons-radio">
-                                <button type="button" id="zero" class="btn active switch" >0 Partners</button>
+                                <button type="button" id="zero" class="btn active switch" >No Partners</button>
                                 <button type="button" id="one" class="btn switch">1 Partner</button>
                                 <button type="button" id="two" class="btn switch">2 Partners</button>
                                 <button type="button" id="three_five" class="btn switch">3-5 Partners</button>
@@ -85,21 +85,21 @@
 
 	<script>
         // Size of SVG container
-            var fullwidth = 750;
-			var	fullheight = 360;
+            var fullwidth = 600;
+			var	fullheight = 400;
         
         // Margins around the graph
-            var margin = {top: 5, right: 40, bottom: 50, left: 20};
+            var margin = {top: 50, right: 40, bottom: 50, left: 20};
             
             var width = fullwidth - margin.left - margin.right;
-            var height = 80 - margin.top - margin.bottom;
+            var height = 150 - margin.top - margin.bottom;
         
             var widthScale = d3.scale.linear()
 				.range([0, width]);
         
         // Space out the bars between the top margin and chart height (bottom)
 			var heightScale = d3.scale.ordinal()
-				.rangeRoundBands([ 0, height], 0.2);   
+				.rangeRoundBands([ 0, height], 0.5);   
         
             var xAxis = d3.svg.axis()
 							.scale(widthScale)
@@ -155,19 +155,7 @@
 					.attr("width", function(d) {
 						return widthScale(+d.average);
 					})
-					.attr("height", heightScale.rangeBand()) // the height is a rangeband!
-					.style("fill", function(d){
-						if (+d.status === "vaccinated") {
-							return "#dab855"; // special case file, could have been done by a class.
-						}
-					})
-                
-
-					/*.append("text")
-					.text(function(d) {
-						return " People who are " + d.status + " have " + d.average  + " chance of contracting HPV. ";
-                    
-					})*/;
+					.attr("height", heightScale.rangeBand()); // the height is a rangeband
             
                 /*rects.exit()
                     .transition()
@@ -246,7 +234,7 @@
                 
                
                svg.selectAll("text")
-               .data(data)
+               .data([data[0]])
 	               .attr("x", function(d) {
 			         return widthScale(data[status][numOfPartner])})
                      .text(function(d){
