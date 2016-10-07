@@ -218,17 +218,6 @@
                     .attr("width", 115)
                         .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-red.svg");
             
-            svg.selectAll("image2")
-                    .data(([data[1]]))  
-                    .enter()
-                    .append("svg:image")
-                    .attr("x", function(d) {
-						return widthScale(+d.average)-45;
-					})
-                    .attr('y', '-40')
-                    .attr("height", 200)
-                    .attr("width", 115)
-                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-blue.svg");
            
             /*d3.selectAll("button")
                     .on("click",function(){
@@ -265,13 +254,25 @@
 					 }); 
                  
             svg.selectAll("image")
-                    .data(data)
+                    .data(([data[0]]))
                     .transition() 
                    .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
 			    //get correct number     
-                return widthScale(data[status][numOfPartner])-45;  });
+                return widthScale(data[0][numOfPartner])-45;  });
+                
+            svg.selectAll("image2")
+                    .data(([data[1]]))  
+                    .enter()
+                    .append("svg:image")
+                    .attr("x", function(d) {
+						return widthScale(data[1][numOfPartner])-45;
+					})
+                    .attr('y', '-40')
+                    .attr("height", 200)
+                    .attr("width", 115)
+                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-blue.svg");
 		         
 	       });
 
