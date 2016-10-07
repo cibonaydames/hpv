@@ -216,7 +216,19 @@
                     .attr('y', '-40')
                     .attr("height", 200)
                     .attr("width", 115)
-                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-selected.svg");
+                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-blue.svg");
+            
+            svg.selectAll("image")
+                    .data(([data[1]]))  
+                    .enter()
+                    .append("svg:image")
+                    .attr("x", function(d) {
+						return widthScale(+d.average)-45;
+					})
+                    .attr('y', '-40')
+                    .attr("height", 200)
+                    .attr("width", 115)
+                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-red.svg");
            
             /*d3.selectAll("button")
                     .on("click",function(){
