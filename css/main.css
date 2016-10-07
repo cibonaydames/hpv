@@ -52,6 +52,26 @@ text {
 
 /*  CSS */
 
+td {
+    padding: 2px 10px;
+}
+
+th {
+    padding: 8px;
+    font-weight: 500;
+    text-align: left;
+    border: 1px solid #8a8c8e;
+    font-size: 14px;
+}
+
+tr, td {
+    padding: 8px;
+    font-weight: 300;
+    text-align: center;
+    border: 1px solid #8a8c8e;
+    font-size: 14px;
+}
+
 *,
 *:before,
 *:after  {
@@ -130,10 +150,12 @@ h2,
 }
 
 h1,
-.h1,
+.h1{}
+
+
 h2,
 .h2 {
-	font-size: 70px;
+	font-size:30px;
 	letter-spacing: 0;
 	line-height: 1;
 }
@@ -166,12 +188,11 @@ h2,
 	h2,
 	.h2 {
 		font-weight: 300;
-		font-size: 54px;
-		font-size: 2.455rem;
+		font-size:30px;
 		line-height: 1;
 	}
 	.h2 .mb-20{
-		font-size: 49px!important;
+		font-size:35px!important;
 	}
 }
 
@@ -179,10 +200,8 @@ h3,
 .h3,
 h4,
 .h4 {
-	text-transform: uppercase;
 	font-size: 22px;
-	font-size: 1rem;
-	font-weight: 700;
+	font-weight: 300;
 	line-height: 1.09;
 	letter-spacing: inherit;
 }
@@ -526,20 +545,24 @@ input.text:focus {
 	height: 5px;
 }
 
+
 .btn {
-    min-width: 120px;
+    min-width: 90px;
 	display: inline-block;
 	line-height: 1;
 	font-size: 16px;
     text-align: center;
 	background: #c1ccd1;
 	cursor: pointer;
-	padding: 15px 10px;
+	padding: 7px 5px;
 	position: relative;
 	z-index: 2;
 	-webkit-tap-highlight-color: rgba(0,0,0,0.1);   
 }
 
+.btn:focus{
+    background:#f2f9f8;
+}
 
 /* padding before icon */
 .btn-prepend,
@@ -551,7 +574,7 @@ input.text:focus {
 
 /* PREPENDED first */
 .btn-prepend {
-	padding-left: 40px;
+	padding-left: 30px;
 	text-align: center;
 }
 
@@ -583,7 +606,7 @@ input.text:focus {
 	right: 0;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	width: 60px;
+	width: 30px;
 	background-color: #42A5F5;
 }
 

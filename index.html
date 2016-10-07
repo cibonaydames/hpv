@@ -21,17 +21,11 @@
 
 <body>
 	<div class="level level-hero hero-home has-hint">
-		
-
-<!--		<div class="hero-overlay visible-lg"></div>-->
-
 		<div class="container full-height">
 			<div class=v-align-parent>
 				<div class=v-center>
 					<div class="row">
-						<div class="col-md-5">
-						<br>
-                         <br>	
+						<div class="col-md-5">	
                          <span style="font-family: Lato, sans-serif">
                              <h1 class="mb-10 heading">IS HPV <span>WORTH <span>THE RISK?</span></h1>
                               <span>
@@ -42,32 +36,54 @@
                             sexual partnerts we have.  
                             </div>
 						</div>
+						
 						<div class="col-md-7">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-						    <div class="btn-group" data-toggle="buttons-radio">
-                                <button type="button" id="zero" class="btn active switch" >No Partners</button>
-                                <button type="button" id="one" class="btn switch">1 Partner</button>
-                                <button type="button" id="two" class="btn switch">2 Partners</button>
-                                <button type="button" id="three_five" class="btn switch">3-5 Partners</button>
-                                <button type="button" id="six_plus" class="btn switch">6+ Partners</button>
-                            </div>
+                           <center>
+                            <h2 class="mb-10 heading">What Is Your Risk Of Having HPV?</h2>
+                            <br>
+                            <h3 class="mb-10 heading">How many sexual partners have you had in your lifetime?</h3>
+                                <br>
+						        <div class="btn-group" data-toggle="buttons-radio">
+                                    <button type="button" id="zero" class="btn switch" >0</button>
+                                    <button type="button" id="one" class="btn switch">1</button>
+                                    <button type="button" id="two" class="btn switch">2</button>
+                                    <button type="button" id="three_five" class="btn switch">3-5</button>
+                                    <button type="button" id="six_plus" class="btn switch">6+</button>
+                                </div>
                             <br><br>
-							<div id="hpvchart">  </div>
+							<div id="hpvchart"></div>
+							
 							<br>
-							<div class="btn-group" data-toggle="buttons-radio">
-                                <button type="button" id="unvaccinated" class="btn active switch">Unvaccinated</button>
-                                <button type="button" id="vaccinated" class="btn switch">Vaccinated</button>
-                            </div>
+                                <h2 class="mb-10 heading">Your Risk by Age Group</h2>
+                            <h4 class="mb-10 heading">(Regardless of Sexual Partners)</h4>
+                                <br>
+                                 <table>
+                                  <tr>
+                                    <th>Age Group</th>
+                                    <td>14-19</td> 
+                                    <td>20-24</td> 
+                                    <td>25-29</td> 
+                                    <td>30-39</td> 
+                                    <td>40-49</td> 
+                                    <td>50-59</td> 
+                                  </tr>
+                                  <tr>
+                                    <th>Risk</th>
+                                    <td>24.5%</td> 
+                                    <td>44.8%</td> 
+                                    <td>27.4%</td> 
+                                    <td>27.5%</td> 
+                                    <td>25.2%</td> 
+                                    <td>19.6%</td> 
+                                  </tr>
+                                </table>
+                                </center>
                               </div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -124,7 +140,7 @@
             var numOfPartner = 'zero';
             var status = 0;
         
-        d3.csv("data/hpv-data.csv", function(error, data) {
+            d3.csv("data/hpv-data.csv", function(error, data) {
 
 				if (error) {
 					console.log("error reading file");
@@ -136,15 +152,13 @@
             
 				// you should calculate using d3.max for your data
 				widthScale.domain([ 0, d3.max(data, function(d) {
-					return +d.six_plus;
+					return +d.start;
 				}) ]);
-
-				// js map: will make a new array out of all the d.name fields:
 
 				heightScale.domain(data.map(function(d) { return +d.average; } ).slice(1));
             
             var rects = svg.selectAll("rect")
-                    .data([data[0]])
+                    .data(([data[0]]))
                     .enter()
                     .append("rect");
             
@@ -158,15 +172,9 @@
 					})
 					.attr("height", heightScale.rangeBand()); // the height is a rangeband
             
-                /*rects.exit()
-                    .transition()
-                    .duration(300)
-                    .attr("width", 0)
-                    .remove();*/
-            
                 svg.selectAll("text")
                    .attr("class", "label")
-				    .data([data[0]])
+				    .data(([data[0]]))
 			      	.enter()
 			      	.append("text")
 				    .text(function(d){
@@ -186,10 +194,6 @@
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis)
                 .attr("fill","#808285");
-              
-           /* svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis);*/
             
             // Label below x axis
 				svg.append("text")
@@ -198,12 +202,12 @@
         				height + ")")
         			.style("text-anchor", "middle")
         			.attr("dy", "45")
-        			.text("Risk of Contracting HPV")
+        			.text(" ")
                     .attr("fill","#5582b0")
                     .attr("font-weight","600");
  
             svg.selectAll("image")
-                    .data(([data[0]])  )  
+                    .data(([data[0]]))  
                     .enter()
                     .append("svg:image")
                     .attr("x", function(d) {
@@ -214,7 +218,7 @@
                     .attr("width", 115)
                         .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-selected.svg");
            
-           /*  d3.selectAll("button")
+            /*d3.selectAll("button")
                     .on("click",function(){
                         console.log(this.id);
                     });*/
@@ -231,30 +235,27 @@
            rects
 	               .data(data)
                    .transition() 
-                   .duration(500)
+                   .duration(1000)
                    .ease("linear")
 	               .attr("width", function(d) {
 			         return widthScale(data[status][numOfPartner]); 
            });
-                
-               
+                     
                svg.selectAll("text")
                .data([data[0]])
                .transition() 
-                   .duration(500)
+                   .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
 			         return widthScale(data[status][numOfPartner])})
                      .text(function(d){
                        return data[status][numOfPartner] + " %"
 					 }); 
-                
-    
-                   
+                 
             svg.selectAll("image")
                     .data(data)
                     .transition() 
-                   .duration(500)
+                   .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
 			    //get correct number     
