@@ -176,7 +176,7 @@
 					})
 					.attr("height", heightScale.rangeBand()); // the height is a rangeband
             
-                svg.selectAll("text")
+                 svg.selectAll("#red-text")
                    .attr("class", "label")
 				    .data(([data[0]]))
 			      	.enter()
@@ -188,10 +188,28 @@
 						return widthScale(+d.average)+5;
 					})
                      .attr('y', '-45')
+                     .attr('id', 'red-text')
                      .attr("fill","#8a8c8e")
                      .attr("font-size","24")
                      .attr("font-weight","700")
-            
+                 
+                 svg.selectAll("#blue-text")
+                   .attr("class", "label")
+				    .data(([data[0]]))
+			      	.enter()
+			      	.append("text")
+				    .text(function(d){
+                        return  +d.average + " %";
+					 })         
+                     .attr("x", function(d) {
+						return widthScale(+d.average)+5;
+					})
+                     .attr('y', '-45')
+                     .attr('id', 'blue-text')
+                     .attr("fill","#8a8c8e")
+                     .attr("font-size","24")
+                     .attr("font-weight","700")
+                
                     // Style the axis
                 svg.append("g")
                     .attr("class", "x axis")
@@ -210,7 +228,7 @@
                     .attr("fill","#5582b0")
                     .attr("font-weight","600");
  
-                svg.selectAll("image1")
+                svg.selectAll(".red-img")
                     .data(([data[0]]))  
                     .enter()
                     .append("svg:image")
@@ -218,16 +236,31 @@
 						return widthScale(+d.average)-45;
 					})
                     .attr('y', '-40')
+                    .attr('class', 'red-img')
                     .attr("height", 200)
                     .attr("width", 115)
                         .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-red.svg");
+                
+                 svg.selectAll(".blue-img")
+                    .data(([data[1]]))  
+                    .enter()
+                    .append("svg:image")
+                    .attr("x", function(d) {
+						return widthScale(+d.average)-45;
+					})
+                    .attr('y', '-40')
+                    .attr('class', 'blue-img')
+                    .attr("height", 200)
+                    .attr("width", 115)
+                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-blue.svg");
+                
             
             /*d3.selectAll("button")
                     .on("click",function(){
                         console.log(this.id);
                     });*/
             
-            d3.selectAll("button").on("click",function(){
+             d3.selectAll("button").on("click",function(){
 	               if(this.id == "unvaccinated")
                       status = 0;
 	               else if(this.id == "vaccinated") {
@@ -235,8 +268,9 @@
 	                   }
 	               else {
 		              numOfPartner = this.id;
-	                   }
-           rects
+	                   }   
+                 
+                 rects
 	               .data(data)
                    .transition() 
                    .duration(1000)
@@ -245,37 +279,46 @@
 			         return widthScale(data[status][numOfPartner]); 
            });
                      
-               svg.selectAll("text")
+               svg.selectAll("#red-text")
                .data(([data[0]]))
                .transition() 
                    .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
-			         return widthScale(data[status][numOfPartner])})
+			         return widthScale(d[numOfPartner])})
                      .text(function(d){
-                       return data[status][numOfPartner] + " %"
+                       return d[numOfPartner] + " %"
+					 }); 
+                 
+                svg.selectAll("#blue-text")
+               .data(([data[0]]))
+               .transition() 
+                   .duration(1000)
+                   .ease("linear")
+	               .attr("x", function(d) {
+			         return widthScale(d[numOfPartner])})
+                     .text(function(d){
+                       return d[numOfPartner] + " %"
 					 }); 
                
-            svg.selectAll("image")
+                svg.selectAll(".red-img")
                     .data(([data[0]]))
                     .transition() 
                    .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
 			    //get correct number     
-                return widthScale(data[status][numOfPartner])-45;  });
+                return widthScale(d[numOfPartner])-45;  });
                 
-            svg.selectAll("image2")
-                    .data(([data[1]]))  
-                    .enter()
-                    .append("svg:image")
-                    .attr("x", function(d) {
-						return widthScale(data[1][numOfPartner])-45;
-					})
-                    .attr('y', '-40')
-                    .attr("height", 200)
-                    .attr("width", 115)
-                        .attr("xlink:href", "https://cibonaydames.github.io/hpv/img/silueta-blue.svg");
+           
+                 svg.selectAll(".blue-img")
+                    .data(([data[1]]))
+                    .transition() 
+                   .duration(1000)
+                   .ease("linear")
+	               .attr("x", function(d) {
+			    //get correct number     
+                return widthScale(d[numOfPartner])-45;  });
 		         
 	       });
 
@@ -286,3 +329,5 @@
 
 </body>
 </html>
+
+
