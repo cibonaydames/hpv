@@ -107,11 +107,11 @@
 
 	<script>
         // Size of SVG container
-            var fullwidth = 620;
+            var fullwidth = 625;
 			var	fullheight = 600;
         
         // Margins around the graph
-            var margin = {top: 65, right: 90, bottom: 40, left: 60};
+            var margin = {top: 65, right: 90, bottom: 40, left: 66};
             
             var width = fullwidth - margin.left - margin.right;
             var height = 265 - margin.top - margin.bottom;
@@ -195,20 +195,21 @@
                  
                  svg.selectAll("#blue-text")
                    .attr("class", "label")
-				    .data(([data[0]]))
+				    .data(([data[1]]))
 			      	.enter()
 			      	.append("text")
 				    .text(function(d){
                         return  +d.average + " %";
 					 })         
                      .attr("x", function(d) {
-						return widthScale(+d.average)+5;
+						return widthScale(+d.average)-55;
 					})
                      .attr('y', '-45')
                      .attr('id', 'blue-text')
                      .attr("fill","#8a8c8e")
                      .attr("font-size","24")
                      .attr("font-weight","700")
+                    
                 
                     // Style the axis
                 svg.append("g")
@@ -291,12 +292,12 @@
 					 }); 
                  
                 svg.selectAll("#blue-text")
-               .data(([data[0]]))
+               .data(([data[1]]))
                .transition() 
                    .duration(1000)
                    .ease("linear")
 	               .attr("x", function(d) {
-			         return widthScale(d[numOfPartner])})
+			         return widthScale(d[numOfPartner])-65;})
                      .text(function(d){
                        return d[numOfPartner] + " %"
 					 }); 
