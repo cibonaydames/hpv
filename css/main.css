@@ -39,6 +39,10 @@ rect {
     shape-rendering: crispEdges;
 }
 
+path.domain {
+  visibility:hidden;
+}
+
 .axis text {
     font-family: sans-serif;
     font-size: 12px;
