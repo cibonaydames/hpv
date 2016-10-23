@@ -18,7 +18,7 @@ label {
 
 
 body {
-    background-color: #d4e894;
+    background-color: rgba(255,255,255, 0.8);
     font-family: sans-serif;
 }
 
@@ -76,6 +76,7 @@ tr, td {
     text-align: center;
     border: 1px solid #8a8c8e;
     font-size: 14px;
+    background-color: rgba(255,255,255, 0.8);
 }
 
 *,
@@ -86,10 +87,19 @@ tr, td {
 	box-sizing: border-box;
 }
 
+.scroll-box {
+    height: 220px; /* maximum height of the box, feel free to change this! */
+    overflow-y: scroll;
+}
+
 html,
 body {
-	height: 100%;
-	background: #fff;
+	
+    background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
+    background-position: left bottom; /*Positioning*/
+    background-color: rgba(255,255,255, 0.8);
+    background-repeat: no-repeat;
+    background-size: 400px 400px;
 }
 
 html {
@@ -128,7 +138,7 @@ button {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	line-height: 1.36;
-	color: #ffffff;
+	color: #8a8c8e;
 	letter-spacing: -0.035em;
 }
 
@@ -141,7 +151,7 @@ h3,
 h4,
 .h4 {
 	margin: 0;
-	color: #2a2a2a;
+	color: #8a8c8e;
 }
 
 h1,
@@ -570,6 +580,7 @@ input.text:focus {
 	font-size: 16px;
     text-align: center;
 	background: #c1ccd1;
+    color: #ffffff;
 	cursor: pointer;
 	padding: 7px 5px;
 	position: relative;
@@ -579,6 +590,7 @@ input.text:focus {
 
 .btn:focus{
     background:#f2f9f8;
+    outline: none;
 }
 
 /* padding before icon */
@@ -731,7 +743,7 @@ input.text:focus {
 }
 
 .full-height {
-	height: 100%;
+	
 }
 
 .header {
@@ -818,8 +830,6 @@ input.text:focus {
 
 @media ( min-width: 768px ) {
 	.level {
-		padding: 140px 0 160px;
-		padding: 6.364rem 0 7.273rem;
 		text-align: left;
 	}
 	
@@ -997,7 +1007,7 @@ input.text:focus {
 	background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
     background-position: left bottom; /*Positioning*/
     background-repeat: no-repeat;
-	background-color: #ffffff;
+	background-color: rgba(255,255,255, 0.8);
     background-size: 300px 300px;
 }
 
@@ -1014,8 +1024,11 @@ input.text:focus {
 
 @media ( min-width: 1200px ) {
 	.hero-home {
-		background-color: #ffffff;
 		background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
+    background-position: left bottom; /*Positioning*/
+    background-repeat: no-repeat;
+	background-color: rgba(255,255,255, 0.8);
+    background-size: 300px 300px;
 	}
 
 }
@@ -1066,7 +1079,11 @@ input.text:focus {
 .iphone-mobile {
 	height: 200px; 
 	width: 100%;
-	background: url("https://cibonaydames.github.io/hpv/img/bg3.png") no-repeat;
+	background-image: url("https://cibonaydames.github.io/hpv/img/bg3.png");
+    background-position: left bottom; /*Positioning*/
+    background-repeat: no-repeat;
+	background-color: #ffffff;
+    background-size: 300px 300px;
 }
 
 @media ( min-width: 768px ) {
@@ -1101,6 +1118,7 @@ input.text:focus {
 @media ( min-width: 1200px ) {
 	.level-img-right > .container {
 		background: none;
+        
 	}
 	
 	.img-right-sprite {
@@ -2271,6 +2289,7 @@ a.underline:hover {
 .mb-10 {
 	margin-bottom: 10px;
 	margin-bottom: .455rem;
+    background-color: rgba(255,255,255, 0.8);
 }
 
 .mb-15 {
@@ -2281,6 +2300,7 @@ a.underline:hover {
 .mb-20 {
 	margin-bottom: 20px;
 	margin-bottom: .909rem;
+    background-color: rgba(255,255,255, 0.8);
 }
 
 .mb-25 {

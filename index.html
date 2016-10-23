@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<div class="level level-hero hero-home has-hint">
+	
 		<div class="container full-height">
 			<div class=v-align-parent>
 				<div class=v-center>
@@ -30,19 +30,43 @@
                              <h1 class="mb-10 heading">IS HPV</h1>
                             <h1 class="mb-10 heading">WORTH</h1>
                             <h1 class="mb-10 heading">THE RISK?</h1>
-                           <br><br>
-                            <div class="subheading mb-20"><B>26.8%</B> of women in the US have HPV, <br class=hidden-xs>of those a high percent have a strain<br class=hidden-xs> of HPV that can cause cervical cancer.<br><br>
-                            Let's see how being vaccinated lowers<br>
-                            our risk despite the number of <br>
-                            sexual partnerts we have.  
+                           <br>
+                            <div class="subheading mb-20">
+                                <div class="scroll-box">
+                                    <p><b>What is HPV?</b>
+                                    <br>
+                                    Human papillomaviruses (HPVs) are a group of more than 100 types of viruses that has been the most common sexually transmitted infection in the United States. Nearly 80 million Americans—about one in four—are currently infected with HPVs. It is estimated that around 14 million people, including teenagers, will become newly infected each year. 
+                                    <br><br>
+                                    Some types of HPVs can cause serious health problems including a variety kinds of cancers (e.g., cervical cancer, anal cancer, and oropharyngeal cancers). Research has identified that almost 100% of cervical cases are caused by HPVs. About 26.8% of women in the US are infected with HPVs, of those a high percent contains HPVs that can cause cervical cancer.
+                                    </p>
+                                    <p>Who gets HPV infections?
+                                    <br><br>
+                                    Anyone who has ever been sexually active (that is, engaged in skin-to-skin sexual conduct, including vaginal, anal, or oral sex) can get HPVs. HPV infection is most common in people in their late teens and early 20s. The risk of getting infected with HPVs for age group of 20-24 is about 44.8%, while the risks for other age groups are under 30%.
+                                    <br><br>
+                                    HPV is easily passed between partners through sexual contact. HPV infections are more likely in those who have many sex partners or have sex with someone who has had many partners. The risks of getting HPVs for people who don’t have any sexual partner, people who have 1 sexual partner, people who have 2 sexual partners, people who have 3-5 sexual partners, and people who have 6 and more sexual partners are 5.2%, 11.5%, 24.3%, 32%, 35.3%.
+                                    </p>
+                                    <br>
+                                    <p>
+                                    <b>How can I prevent HPV inflections?</b><br>
+                                    HPV vaccines are highly effective in preventing the targeted HPV types. Three vaccines (Cervarix, Gardasil, and Gardasil 9) have been approved by the Food and Drug Administration (FDA) to prevent HPV infection, and results of clinical trials have demonstrated high efficacy (about 95%) of these vaccines. All three HPV vaccines are licensed for females and males through age 26.
+                                    </p>    
+                                </div>
+                                <br><br>
+                                <p>
+                                    <h2 class="mb-10 heading">How can I get HPV vaccinated?</h2>
+                             <br>
+                                    Health insurance plans cover the cost of HPV vaccines. If you don't have insurance, the Vaccines for Children (VFC) program may be able to help.
+                                    </p>
                             </div>
+                            <center>
+                                <iframe frameborder="0" height="128" id="vaccinefinderw199" marginheight="0" marginwidth="0" name="vaccinefinderw199" scrolling="no" src="//wcdapps.hhs.gov/Badges/Handlers/Badge.ashx?js=0&widgetname=vaccinefinderw199" title="Vaccine.gov" width="199"></iframe></center><br>
 						</div>
 						
 						<div class="col-md-7">
                            <center>
                             <h2 class="mb-10 heading">What Is Your Risk Of Having HPV?</h2>
                             <br>
-                            <h3 class="mb-10 heading">How many sexual partners have you had in your lifetime?</h3>
+                            <h3 class="mb-10 heading">Click the following buttons to explore how your risk of getting infected with HPV <br> is influenced by the number of your sexual partners in lifetime.</h3>
                                 <br>
 						        <div class="btn-group" data-toggle="buttons-radio">
                                     <button type="button" id="zero" class="btn switch" >0</button>
@@ -56,10 +80,10 @@
                               <h5 class="mb-10 heading">
                               <span style="color:#8cb8ba">Vaccinated</span>
                               <span style="color:white">.....</span>   
-                               <span style="color:#aa5135">Unvaccinated</span></h5> 
+                               <span style="color:#aa5135">Not Vaccinated</span></h5> 
                                <br>
                                 <h2 class="mb-10 heading">Your Risk by Age Group</h2>
-                            <h4 class="mb-10 heading">(Regardless of Sexual Partners)</h4>
+                            <h3 class="mb-10 heading">(Regardless of Sexual Partners)</h3>
                                 <br>
                                  <table>
                                   <tr>
@@ -81,6 +105,7 @@
                                     <td>19.6%</td> 
                                   </tr>
                                 </table>
+                               <br><br>
                                 </center>
                               </div>
 							</div>
@@ -281,7 +306,7 @@
            });
                      
                svg.selectAll("#red-text")
-               .data(([data[0]]))
+               .data([data[0]])
                .transition() 
                    .duration(1000)
                    .ease("linear")
@@ -292,7 +317,7 @@
 					 }); 
                  
                 svg.selectAll("#blue-text")
-               .data(([data[1]]))
+               .data([data[1]])
                .transition() 
                    .duration(1000)
                    .ease("linear")
@@ -303,7 +328,7 @@
 					 }); 
                
                 svg.selectAll(".red-img")
-                    .data(([data[0]]))
+                    .data([data[0]])
                     .transition() 
                    .duration(1000)
                    .ease("linear")
@@ -313,7 +338,7 @@
                 
            
                  svg.selectAll(".blue-img")
-                    .data(([data[1]]))
+                    .data([data[1]])
                     .transition() 
                    .duration(1000)
                    .ease("linear")
