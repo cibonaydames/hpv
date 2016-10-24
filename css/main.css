@@ -88,7 +88,7 @@ tr, td {
 }
 
 .scroll-box {
-    height: 380px; /* maximum height of the box, feel free to change this! */
+    height: 647px; /* maximum height of the box, feel free to change this! */
     overflow-y: scroll;
     background-color: rgba(255,255,255, 0.8);
 }
@@ -121,6 +121,13 @@ html {
 	html {
 		font-size: 20px;
 	}
+    
+     h1,
+.h1 {
+	font-weight: 700;
+	text-transform: uppercase;
+    font-size: 48px;
+}
 
 }
 
@@ -129,6 +136,13 @@ html {
 	html {
 		font-size: 22px;
 	}
+    
+    h1,
+.h1 {
+	font-weight: 700;
+	text-transform: uppercase;
+    font-size: 48px;
+}
 
 }
 
@@ -159,6 +173,7 @@ h1,
 .h1 {
 	font-weight: 700;
 	text-transform: uppercase;
+    font-size: 48px;
 }
 
 h2,
