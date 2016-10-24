@@ -210,7 +210,7 @@ h3,
 .h3,
 h4,
 .h4 {
-	font-size: 22px;
+	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.09;
 	letter-spacing: inherit;
@@ -224,8 +224,7 @@ h4,
 @media ( min-width: 768px ) {
 	h3,
 	.h3 {
-		font-size: 18px;
-		font-size: 0.818rem;
+		font-size: 16px;
 	}
 	
 	h4,
@@ -2282,7 +2281,7 @@ a.underline:hover {
 .mb-10 {
 	margin-bottom: 10px;
 	margin-bottom: .455rem;
-    background-color: rgba(255,255,255, 0.8);
+    
 }
 
 .mb-15 {
