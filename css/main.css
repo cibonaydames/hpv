@@ -88,8 +88,9 @@ tr, td {
 }
 
 .scroll-box {
-    height: 220px; /* maximum height of the box, feel free to change this! */
+    height: 380px; /* maximum height of the box, feel free to change this! */
     overflow-y: scroll;
+    background-color: rgba(255,255,255, 0.8);
 }
 
 html,
@@ -163,29 +164,22 @@ h1,
 h2,
 .h2 {
 	font-weight: 300;
-		font-size:30px;
+		font-size:28px;
 		line-height: 1;
 }
 
 
-h2,
-.h2 {
-	font-size:30px;
-	letter-spacing: 0;
-	line-height: 1;
-}
-
 @media ( min-width: 768px ) {
 	h1,
 	.h1 {	
-		font-size: 70px;
+		font-size: 36px;
 		line-height: 0.8334;
         text-transform: uppercase;
 	}
 }
 
 	h1.scaled {
-		font-size: 48px;
+		font-size: 36px;
 		line-height: 1;
         text-transform: uppercase;
 	}
@@ -193,8 +187,7 @@ h2,
 @media ( min-width: 480px ) {
 
 	h1.scaled {
-		font-size: 48px;
-		font-size: 2.182rem;
+		font-size: 36px;
 		line-height: 1.042;
 	}
 	
@@ -204,7 +197,7 @@ h2,
 	h2,
 	.h2 {
 		font-weight: 300;
-		font-size:30px;
+		font-size:28px;
 		line-height: 1;
         letter-spacing: 0;
 	}
