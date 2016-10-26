@@ -239,7 +239,7 @@ h4,
 @media ( min-width: 768px ) {
 	h3,
 	.h3 {
-		font-size: 16px;
+		font-size: 17px;
 	}
 	
 	h4,
@@ -581,7 +581,7 @@ input.text:focus {
 
 
 .btn {
-    min-width: 90px;
+    min-width: 103px;
 	display: inline-block;
 	line-height: 1;
 	font-size: 16px;
