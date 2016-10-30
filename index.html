@@ -76,9 +76,9 @@
     <br><br>
 							<div id="hpvchart"></div>
                               <h5 class="mb-10 heading">
-                              <span style="color:#8cb8ba">Vaccinated</span>
+                                  <span style="color:#8cb8ba"><b>Vaccinated</b></span>
                               <span style="color:white">. . . . . . . . . .</span>   
-                               <span style="color:#aa5135">Not Vaccinated</span></h5> 
+                                  <span style="color:#aa5135"><b>Not Vaccinated</b></span></h5> 
                                <br>
                                 <br>
                                 <p>
@@ -134,7 +134,7 @@
 							.scale(widthScale)
 							.orient("bottom")
                             .innerTickSize([4])
-                            .outerTickSize([5]);
+                            .outerTickSize([4]);
             
             var yAxis = d3.svg.axis()
 							.scale(heightScale)
@@ -217,13 +217,32 @@
                      .attr("font-size","24")
                      .attr("font-weight","700")
                  
+                               //gradient
+                               var gradient = svg.append("g")
+                                  .append("linearGradient")
+                                    .attr("id", "gradient")
+                                    .attr("x1", "10%")
+                                    .attr("y1", "5%")
+                                    .attr("x2", "100%")
+                                    .attr("y2", "5%")
+                                    .attr("spreadMethod", "pad");
+
+                                gradient.append("stop")
+                                    .attr("offset", "0%")
+                                    .attr("stop-color", "red")
+                                    .attr("stop-opacity", 1);
+
+                                gradient.append("stop")
+                                    .attr("offset", "50%")
+                                    .attr("stop-color", "#c00")
+                                    .attr("stop-opacity", 1);
                  
                     // Style the axis
                 svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis)
-                    .attr("fill","#808285");
+                    ;
             
             // Label below x axis
 				svg.append("text")
@@ -234,7 +253,9 @@
         			.attr("dy", "0")
         			.text("  ")
                     .attr("fill","#5582b0")
-                    .attr("font-weight","600");
+                    .attr("font-weight","600")
+                ;
+                
  
                 svg.selectAll(".red-img")
                     .data(([data[0]]))  
@@ -327,6 +348,30 @@
 	               .attr("x", function(d) {
 			    //get correct number     
                 return widthScale(d[numOfPartner])-45;  });
+                 
+                 function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+      });
+}
 		         
 	       });
 
